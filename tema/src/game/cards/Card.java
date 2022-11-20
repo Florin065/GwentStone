@@ -1,5 +1,6 @@
-package game;
+package game.cards;
 
+import fileio.CardInput;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,12 @@ public class Card {
     private String description;
     @Getter @Setter
     ArrayList<String> colors;
+
+    public Card(CardInput cardInput) {
+        this.name = cardInput.getName();
+        this.description = cardInput.getDescription();
+        this.colors = cardInput.getColors();
+    }
 
     public Card(String name, String description, ArrayList<String> colors) {
         this.name = name;

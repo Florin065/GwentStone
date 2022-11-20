@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionsInput;
 import fileio.GameInput;
 import fileio.Input;
+import game.cards.CardGen;
 
 import java.util.Collections;
 import java.util.Random;
@@ -43,7 +44,15 @@ public class Match {
     public void playGame() {
         for (ActionsInput actionsInput : this.gameInput.getActions()) {
             switch (actionsInput.getCommand()) {
+                case "getPlayerDeck" -> {
 
+                }
+                case "getPlayerHero" -> {
+
+                }
+                case "getPlayerTurn" -> {
+
+                }
             }
         }
     }

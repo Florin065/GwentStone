@@ -1,5 +1,6 @@
 package game;
 
+import game.cards.Card;
 import lombok.Getter;
 import lombok.Setter;
 
