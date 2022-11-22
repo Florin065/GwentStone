@@ -1,4 +1,4 @@
-package game.commands_TOREMOVE;
+package game.commands;
 
 public class GetCardAtPosition {
 }

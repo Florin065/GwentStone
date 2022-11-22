@@ -5,9 +5,9 @@ import fileio.ActionsInput;
 import fileio.GameInput;
 import fileio.Input;
 import game.cards.CardGen;
-import game.commands_TOREMOVE.GetPlayerDeck;
-import game.commands_TOREMOVE.GetPlayerHero;
-import game.commands_TOREMOVE.GetPlayerTurn;
+import game.commands.GetPlayerDeck;
+import game.commands.GetPlayerHero;
+import game.commands.GetPlayerTurn;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +24,10 @@ public class Match {
     private ArrayNode output;
     @Getter @Setter
     private int playerTurn;
+    @Getter @Setter
+    private String player1Hero;
+    @Getter @Setter
+    private String player2Hero;
 
     public Match(Player player1, Player player2, Input input, GameInput gameInput, ArrayNode output) {
         this.player1   = player1;
@@ -56,16 +60,17 @@ public class Match {
             switch (actionsInput.getCommand()) {
                 case "getPlayerDeck" -> {
                     GetPlayerDeck getPlayerDeck = new GetPlayerDeck();
-                    getPlayerDeck.action(output, this, actionsInput.getPlayerIdx());
+                    getPlayerDeck.action(this, output, actionsInput.getPlayerIdx());
                 }
                 case "getPlayerHero" -> {
                     GetPlayerHero getPlayerHero = new GetPlayerHero();
-                    getPlayerHero.action(output, this, actionsInput.getPlayerIdx());
+                    getPlayerHero.action(this, output, actionsInput.getPlayerIdx());
                 }
                 case "getPlayerTurn" -> {
                     GetPlayerTurn getPlayerTurn = new GetPlayerTurn();
-                    getPlayerTurn.execute(this, output);
+                    getPlayerTurn.action(this, output);
                 }
+                case
             }
         }
     }
