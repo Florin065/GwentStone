@@ -5,7 +5,7 @@ import fileio.ActionsInput;
 import fileio.GameInput;
 import fileio.Input;
 import game.cards.CardGen;
-import game.commands.*;
+import game.commands.check.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,30 +28,38 @@ public class Match {
     @Getter @Setter
     private String player2Hero;
     @Getter @Setter
-    private int turnCounter = 1;
+    private int initialTurn;
     @Getter @Setter
-    private int roundCounter = 1;
+    private int roundCounter;
 
     public Match(Player player1, Player player2, Input input, GameInput gameInput, ArrayNode output) {
-        this.player1    = player1;
-        this.player2    = player2;
-        this.input      = input;
-        this.gameInput  = gameInput;
-        this.output     = output;
+        this.player1        = player1;
+        this.player2        = player2;
+        this.input          = input;
+        this.gameInput      = gameInput;
+        this.output         = output;
         this.player1.setCurrentDeck(CardGen.getDeck(input.getPlayerOneDecks(), gameInput.getStartGame().getPlayerOneDeckIdx()));
         this.player2.setCurrentDeck(CardGen.getDeck(input.getPlayerTwoDecks(), gameInput.getStartGame().getPlayerTwoDeckIdx()));
         this.player1.setHero(CardGen.getCard(gameInput.getStartGame().getPlayerOneHero()));
         this.player2.setHero(CardGen.getCard(gameInput.getStartGame().getPlayerTwoHero()));
         Collections.shuffle(this.player1.getCurrentDeck(), new Random(gameInput.getStartGame().getShuffleSeed()));
         Collections.shuffle(this.player2.getCurrentDeck(), new Random(gameInput.getStartGame().getShuffleSeed()));
-        this.playerTurn = gameInput.getStartGame().getStartingPlayer();
-        this.board = new Board();
+        this.playerTurn     = gameInput.getStartGame().getStartingPlayer();
+        this.initialTurn    = gameInput.getStartGame().getStartingPlayer();
+        this.roundCounter   = 1;
+        this.board          = new Board();
         round();
     }
 
     public void round() {
-        player1.setMana(player1.getMana() + roundCounter);
-        player2.setMana(player2.getMana() + roundCounter);
+        if (roundCounter < 10) {
+            player1.setMana(player1.getMana() + roundCounter);
+            player2.setMana(player2.getMana() + roundCounter);
+        }
+        else {
+            player1.setMana(player1.getMana() + 10);
+            player2.setMana(player2.getMana() + 10);
+        }
 
         player1.getCardInHand();
         player2.getCardInHand();
@@ -66,14 +74,22 @@ public class Match {
                 case "endPlayerTurn" -> {
                     EndPlayerTurn endPlayerTurn = new EndPlayerTurn();
                     endPlayerTurn.action(this, board);
-                    if (turnCounter % 2 == 0) {
-                        round();
+
+                    if (this.playerTurn == 1) {
+                        this.playerTurn = 2;
                     }
-                    turnCounter++;
+                    else {
+                        this.playerTurn = 1;
+                    }
+
+                    if (this.playerTurn == this.initialTurn) {
+                        round();
+                        roundCounter++;
+                    }
                 }
                 case "placeCard" -> {
                     PlaceCard placeCard = new PlaceCard();
-                    placeCard.action(this, output, actionsInput, board);
+                    placeCard.action(this, output, actionsInput, gameInput, board);
                 }
 //                case "cardUsesAttack" -> {
 //                    CardUsesAttack cardUsesAttack = new CardUsesAttack();

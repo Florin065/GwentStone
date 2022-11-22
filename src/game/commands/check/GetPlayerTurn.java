@@ -1,4 +1,4 @@
-package game.commands;
+package game.commands.check;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
