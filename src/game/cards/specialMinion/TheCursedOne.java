@@ -7,6 +7,6 @@ public class TheCursedOne extends Minion {
     public TheCursedOne(CardInput cardInput) { super(cardInput); }
 
     public TheCursedOne() {
-
+        setAttackDamage(0);
     }
 }

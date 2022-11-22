@@ -3,14 +3,14 @@ package game.commands;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import game.Board;
+import game.Match;
 
-public class GetCardsOnTable {
-    public void action(ArrayNode output, Board board) {
+public class GetPlayerWins {
+    public void action(Match match, ArrayNode output, int playerIdx) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
-        node.put("command", "getCardsOnTable");
-        node.putPOJO("output", board.getCards());
+        node.put("command", "getPlayerWins");
+
         output.add(node);
     }
 }

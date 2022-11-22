@@ -9,14 +9,11 @@ import java.util.ArrayList;
 
 public class Hero extends Card {
     @Getter @Setter
-    private int mana;
-    @Getter @Setter
     private int health;
 
     public Hero(CardInput cardInput) {
         super(cardInput);
         this.health = 30;
-        this.mana = cardInput.getMana();
     }
 
     public Hero() {

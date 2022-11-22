@@ -7,4 +7,11 @@ public class KingMudface extends Hero {
     public KingMudface(CardInput cardInput) {
         super(cardInput);
     }
+
+    public KingMudface() {
+    }
+
+    public void useHeroAbility() {
+
+    }
 }

@@ -7,4 +7,11 @@ public class GeneralKocioraw extends Hero {
     public GeneralKocioraw(CardInput cardInput) {
         super(cardInput);
     }
+
+    public GeneralKocioraw() {
+    }
+
+    public void useHeroAbility() {
+
+    }
 }

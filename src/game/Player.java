@@ -13,9 +13,12 @@ public class Player {
     private Card hero;
     @Getter @Setter
     private ArrayList<Card> currentHand;
+    @Getter @Setter
+    private int mana;
 
     public Player() {
         currentHand = new ArrayList<>();
+        mana = 0;
     }
 
     public void getCardInHand() {

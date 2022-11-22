@@ -7,8 +7,6 @@ import lombok.Setter;
 
 public class Minion extends Card {
     @Getter @Setter
-    private int mana;
-    @Getter @Setter
     private int attackDamage;
     @Getter @Setter
     private int health;
@@ -21,7 +19,6 @@ public class Minion extends Card {
 
     public Minion(CardInput cardInput) {
         super(cardInput);
-        this.mana = cardInput.getMana();
         this.attackDamage = cardInput.getAttackDamage();
         this.health = cardInput.getHealth();
         this.frozen = false;
