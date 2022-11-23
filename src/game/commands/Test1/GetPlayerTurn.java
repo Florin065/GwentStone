@@ -1,4 +1,4 @@
-package game.commands.check;
+package game.commands.Test1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -9,8 +9,10 @@ public class GetPlayerTurn {
     public void action(Match match, ArrayNode output) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
+
         node.put("command", "getPlayerTurn");
         node.put("output", match.getPlayerTurn());
+
         output.add(node);
     }
 }

@@ -1,4 +1,4 @@
-package game.commands;
+package game.commands.Test8;
 
 public class CardUsesAbility {
 

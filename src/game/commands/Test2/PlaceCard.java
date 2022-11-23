@@ -1,4 +1,4 @@
-package game.commands.check;
+package game.commands.Test2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -10,8 +10,6 @@ import game.Match;
 import game.cards.Card;
 import game.cards.Environment;
 import game.cards.Minion;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 

@@ -5,7 +5,13 @@ import fileio.ActionsInput;
 import fileio.GameInput;
 import fileio.Input;
 import game.cards.CardGen;
-import game.commands.check.*;
+import game.commands.Test1.GetPlayerDeck;
+import game.commands.Test1.GetPlayerHero;
+import game.commands.Test1.GetPlayerTurn;
+import game.commands.Test2.*;
+import game.commands.Test4.GetCardAtPosition;
+import game.commands.Test4.GetEnvironmentCardsInHand;
+import game.commands.Test4.UseEnvironmentCard;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -107,10 +113,10 @@ public class Match {
 //                    UseHeroAbility useHeroAbility = new UseHeroAbility();
 //                    TODO
 //                }
-//                case "useEnvironmentCard" -> {
-//                    UseEnvironmentCard useEnvironmentCard = new UseEnvironmentCard();
-//                    TODO
-//                }
+                case "useEnvironmentCard" -> {
+                    UseEnvironmentCard useEnvironmentCard = new UseEnvironmentCard();
+//                    useEnvironmentCard.action(this, );
+                }
 
                 // Debug commands
 
@@ -134,18 +140,18 @@ public class Match {
                     GetPlayerHero getPlayerHero = new GetPlayerHero();
                     getPlayerHero.action(this, output, actionsInput.getPlayerIdx());
                 }
-//                case "getCardAtPosition" -> {
-//                    GetCardAtPosition getCardAtPosition = new GetCardAtPosition();
-//                    TODO
-//                }
+                case "getCardAtPosition" -> {
+                    GetCardAtPosition getCardAtPosition = new GetCardAtPosition();
+                    getCardAtPosition.action(this, output, actionsInput, board);
+                }
                 case "getPlayerMana" -> {
                     GetPlayerMana getPlayerMana = new GetPlayerMana();
                     getPlayerMana.action(this, output, actionsInput.getPlayerIdx());
                 }
-//                case "getEnvironmentCardsInHand" -> {
-//                    GetEnvironmentCardsInHand getEnvironmentCardsInHand = new GetEnvironmentCardsInHand();
-//                    TODO
-//                }
+                case "getEnvironmentCardsInHand" -> {
+                    GetEnvironmentCardsInHand getEnvironmentCardsInHand = new GetEnvironmentCardsInHand();
+                    getEnvironmentCardsInHand.action(this, output, actionsInput.getPlayerIdx());
+                }
 //                case "getFrozenCardsOnTable" -> {
 //                    GetFrozenCardsOnTable getFrozenCardsOnTable = new GetFrozenCardsOnTable();
 //                    TODO

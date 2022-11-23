@@ -1,4 +1,4 @@
-package game.commands.check;
+package game.commands.Test2;
 
 import game.Board;
 import game.Match;
