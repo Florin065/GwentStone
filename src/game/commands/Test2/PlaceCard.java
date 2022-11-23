@@ -20,7 +20,8 @@ public class PlaceCard {
         node.put("command", "placeCard");
         node.put("handIdx", actionsInput.getHandIdx());
         // player 1 turn
-        if (match.getPlayerTurn() == 1 && match.getPlayer1().getCurrentHand().size() > actionsInput.getHandIdx()) {
+        if (match.getPlayerTurn() == 1
+                && match.getPlayer1().getCurrentHand().size() > actionsInput.getHandIdx()) {
             Card card = match.getPlayer1().getCurrentHand().get(actionsInput.getHandIdx());
 
             if (card instanceof Environment) {
@@ -64,7 +65,8 @@ public class PlaceCard {
             match.getPlayer1().setMana(playerMana - cardMana);
         }
         // player 2 turn
-        else if (match.getPlayerTurn() == 2 && match.getPlayer2().getCurrentHand().size() > actionsInput.getHandIdx()) {
+        else if (match.getPlayerTurn() == 2
+                && match.getPlayer2().getCurrentHand().size() > actionsInput.getHandIdx()) {
             Card card = match.getPlayer2().getCurrentHand().get(actionsInput.getHandIdx());
 
             if (card instanceof Environment) {

@@ -12,6 +12,8 @@ import game.commands.Test2.*;
 import game.commands.Test4.GetCardAtPosition;
 import game.commands.Test4.GetEnvironmentCardsInHand;
 import game.commands.Test4.UseEnvironmentCard;
+import game.commands.Test5.GetFrozenCardsOnTable;
+import game.commands.Test6.CardUsesAttack;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +28,7 @@ public class Match {
     private Input input;
     private GameInput gameInput;
     private ArrayNode output;
+    @Getter @Setter
     private Board board;
     @Getter @Setter
     private int playerTurn;
@@ -97,10 +100,10 @@ public class Match {
                     PlaceCard placeCard = new PlaceCard();
                     placeCard.action(this, output, actionsInput, gameInput, board);
                 }
-//                case "cardUsesAttack" -> {
-//                    CardUsesAttack cardUsesAttack = new CardUsesAttack();
-//                    TODO
-//                }
+                case "cardUsesAttack" -> {
+                    CardUsesAttack cardUsesAttack = new CardUsesAttack();
+                    cardUsesAttack.action(this, output, actionsInput, board);
+                }
 //                case "cardUsesAbility" -> {
 //                    CardUsesAbility cardUsesAbility = new CardUsesAbility();
 //                    TODO
@@ -115,7 +118,7 @@ public class Match {
 //                }
                 case "useEnvironmentCard" -> {
                     UseEnvironmentCard useEnvironmentCard = new UseEnvironmentCard();
-//                    useEnvironmentCard.action(this, );
+                    useEnvironmentCard.action(this, output, actionsInput, board, playerTurn);
                 }
 
                 // Debug commands
@@ -152,13 +155,13 @@ public class Match {
                     GetEnvironmentCardsInHand getEnvironmentCardsInHand = new GetEnvironmentCardsInHand();
                     getEnvironmentCardsInHand.action(this, output, actionsInput.getPlayerIdx());
                 }
-//                case "getFrozenCardsOnTable" -> {
-//                    GetFrozenCardsOnTable getFrozenCardsOnTable = new GetFrozenCardsOnTable();
-//                    TODO
-//                }
-//
-//                // Statistics commands
-//
+                case "getFrozenCardsOnTable" -> {
+                    GetFrozenCardsOnTable getFrozenCardsOnTable = new GetFrozenCardsOnTable();
+                    getFrozenCardsOnTable.action(output, board);
+                }
+
+                // Statistics commands
+
 //                case "getTotalGamesPlayed" -> {
 //                    GetTotalGamesPlayed getTotalGamesPlayed = new GetTotalGamesPlayed();
 //                    TODO

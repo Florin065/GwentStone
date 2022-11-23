@@ -10,9 +10,6 @@ public class LordRoyce extends Hero {
         super(cardInput);
     }
 
-    public LordRoyce() {
-    }
-
     public void useHeroAbility(Board board, Minion minion) {
 
     }

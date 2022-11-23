@@ -8,9 +8,6 @@ public class GeneralKocioraw extends Hero {
         super(cardInput);
     }
 
-    public GeneralKocioraw() {
-    }
-
     public void useHeroAbility() {
 
     }

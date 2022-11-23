@@ -10,14 +10,17 @@ import java.util.ArrayList;
 
 public class GetCardsOnTable {
     public void action(ArrayNode output, Board board) {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode node = mapper.createObjectNode();
+        ArrayList<ArrayList<Minion>> temp = new ArrayList<>();
 
-        node.put("command", "getCardsOnTable");
+        for (int i = 0; i < 4; i++) {
+            temp.add(new ArrayList<>());
 
-        ArrayList<ArrayList<Minion>> cards = new ArrayList<>(board.getCards());
-        node.putPOJO("output", cards);
+            for (Minion minion : board.getCards().get(i)) {
+                Minion deepCopy = new Minion(minion);
+                temp.get(i).add(deepCopy);
+            }
+        }
 
-        output.add(node);
+        output.addObject().put("command", "getCardsOnTable").putPOJO("output", temp);
     }
 }

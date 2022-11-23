@@ -25,6 +25,11 @@ public class Minion extends Card {
         this.tank = getName().equals("Goliath") || getName().equals("Warden");
     }
 
-    public Minion() {
+    public Minion(Minion minion) {
+        super(minion.getMana(), minion.getName(), minion.getDescription(), minion.getColors());
+        this.attackDamage = minion.getAttackDamage();
+        this.health = minion.getHealth();
+        this.frozen = false;
+        this.tank = getName().equals("Goliath") || getName().equals("Warden");
     }
 }

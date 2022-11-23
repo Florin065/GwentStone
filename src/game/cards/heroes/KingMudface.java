@@ -8,9 +8,6 @@ public class KingMudface extends Hero {
         super(cardInput);
     }
 
-    public KingMudface() {
-    }
-
     public void useHeroAbility() {
 
     }

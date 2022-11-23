@@ -19,11 +19,11 @@ public class GetCardsInHand {
         ArrayList<Card> handCopy;
 
         if (playerIdx == 1) {
-            handCopy = new ArrayList<>(match.getPlayer1().getCurrentHand());
+            handCopy = new ArrayList<>(new ArrayList<>(match.getPlayer1().getCurrentHand()));
             node.putPOJO("output", handCopy);
         }
         else {
-            handCopy = new ArrayList<>(match.getPlayer2().getCurrentHand());
+            handCopy = new ArrayList<>(new ArrayList<>(match.getPlayer2().getCurrentHand()));
             node.putPOJO("output", handCopy);
         }
 
