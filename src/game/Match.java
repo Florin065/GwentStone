@@ -83,8 +83,8 @@ public class Match {
                     }
 
                     if (this.playerTurn == this.initialTurn) {
-                        round();
                         roundCounter++;
+                        round();
                     }
                 }
                 case "placeCard" -> {

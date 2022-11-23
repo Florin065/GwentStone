@@ -1,10 +1,6 @@
 [ {
   "command" : "placeCard",
   "handIdx" : 0,
-  "error" : "Not enough mana to place card on table."
-}, {
-  "command" : "placeCard",
-  "handIdx" : 0,
   "error" : "Cannot place environment card on table."
 }, {
   "command" : "getCardsInHand",
@@ -28,32 +24,11 @@
     "colors" : [ "Yellow", "Orange", "Red" ],
     "attackDamage" : 4,
     "health" : 4
-  }, {
-    "mana" : 4,
-    "name" : "Goliath",
-    "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
-    "colors" : [ "Brown", "Black", "Grey" ],
-    "attackDamage" : 1,
-    "health" : 7
-  }, {
-    "mana" : 3,
-    "name" : "Warden",
-    "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
-    "colors" : [ "Black", "White", "Green" ],
-    "attackDamage" : 3,
-    "health" : 6
-  }, {
-    "mana" : 4,
-    "name" : "Goliath",
-    "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
-    "colors" : [ "Brown", "Black", "Grey" ],
-    "attackDamage" : 1,
-    "health" : 7
   } ]
 }, {
   "command" : "getPlayerMana",
   "playerIdx" : 2,
-  "output" : 7
+  "output" : 8
 }, {
   "command" : "getPlayerTurn",
   "output" : 2
@@ -63,15 +38,7 @@
   "error" : "Cannot place environment card on table."
 }, {
   "command" : "placeCard",
-  "handIdx" : 1,
-  "error" : "Cannot place environment card on table."
-}, {
-  "command" : "placeCard",
   "handIdx" : 0,
-  "error" : "Cannot place environment card on table."
-}, {
-  "command" : "placeCard",
-  "handIdx" : 1,
   "error" : "Cannot place environment card on table."
 }, {
   "command" : "placeCard",
@@ -80,11 +47,11 @@
 }, {
   "command" : "getPlayerMana",
   "playerIdx" : 1,
-  "output" : 22
+  "output" : 14
 }, {
   "command" : "getPlayerMana",
   "playerIdx" : 2,
-  "output" : 22
+  "output" : 26
 }, {
   "command" : "getCardsOnTable",
   "output" : [ [ {
@@ -108,22 +75,6 @@
     "colors" : [ "Black", "White", "Green" ],
     "attackDamage" : 2,
     "health" : 5
-  } ], [ ], [ ] ]
-}, {
-  "command" : "getCardsInHand",
-  "playerIdx" : 1,
-  "output" : [ {
-    "mana" : 2,
-    "name" : "The Cursed One",
-    "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
-    "colors" : [ "Pink", "Purple" ],
-    "attackDamage" : 0,
-    "health" : 3
-  }, {
-    "mana" : 2,
-    "name" : "Winterfell",
-    "description" : "Standard card: The days are cold and so are we. We hope we can close our eyes again.",
-    "colors" : [ "White", "Grey", "Black" ]
   }, {
     "mana" : 4,
     "name" : "Miraj",
@@ -131,6 +82,13 @@
     "colors" : [ "Red", "Black" ],
     "attackDamage" : 4,
     "health" : 4
+  } ], [ {
+    "mana" : 2,
+    "name" : "The Cursed One",
+    "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+    "colors" : [ "Pink", "Purple" ],
+    "attackDamage" : 0,
+    "health" : 3
   }, {
     "mana" : 3,
     "name" : "The Cursed One",
@@ -138,6 +96,15 @@
     "colors" : [ "Black", "White", "Red" ],
     "attackDamage" : 0,
     "health" : 3
+  } ] ]
+}, {
+  "command" : "getCardsInHand",
+  "playerIdx" : 1,
+  "output" : [ {
+    "mana" : 2,
+    "name" : "Winterfell",
+    "description" : "Standard card: The days are cold and so are we. We hope we can close our eyes again.",
+    "colors" : [ "White", "Grey", "Black" ]
   }, {
     "mana" : 5,
     "name" : "Miraj",

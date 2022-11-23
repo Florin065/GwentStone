@@ -5,7 +5,6 @@ import game.Match;
 
 public class EndPlayerTurn {
     public void action(Match match, Board board) {
-
         if (board != null) {
             if (match.getPlayerTurn() == 2) {
                 for (int i = 0; i < 2; i++) {

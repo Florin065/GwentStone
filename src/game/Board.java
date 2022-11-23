@@ -16,6 +16,5 @@ public class Board {
         cards.add(new ArrayList<>());
         cards.add(new ArrayList<>());
         cards.add(new ArrayList<>());
-        cards.add(new ArrayList<>());
     }
 }
