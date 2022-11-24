@@ -12,7 +12,7 @@ import game.cards.Minion;
 import java.util.ArrayList;
 
 public class GetCardAtPosition {
-    public void action(Match match, ArrayNode output, ActionsInput actionsInput, Board board) {
+    public void action(ArrayNode output, ActionsInput actionsInput, Board board) {
         int x = actionsInput.getX();
         int y = actionsInput.getY();
 

@@ -12,6 +12,9 @@ public class EndPlayerTurn {
                         if (board.getCards().get(i).get(j).isFrozen()) {
                             board.getCards().get(i).get(j).setFrozen(false);
                         }
+                        if (board.getCards().get(i).get(j).isUsedAction()) {
+                            board.getCards().get(i).get(j).setUsedAction(false);
+                        }
                     }
                 }
             } else {
@@ -19,6 +22,9 @@ public class EndPlayerTurn {
                     for (int j = 0; j < board.getCards().get(i).size(); j++) {
                         if (board.getCards().get(i).get(j).isFrozen()) {
                             board.getCards().get(i).get(j).setFrozen(false);
+                        }
+                        if (board.getCards().get(i).get(j).isUsedAction()) {
+                            board.getCards().get(i).get(j).setUsedAction(false);
                         }
                     }
                 }

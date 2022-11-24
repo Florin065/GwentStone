@@ -14,6 +14,7 @@ import game.commands.Test4.GetEnvironmentCardsInHand;
 import game.commands.Test4.UseEnvironmentCard;
 import game.commands.Test5.GetFrozenCardsOnTable;
 import game.commands.Test6.CardUsesAttack;
+import game.commands.Test8.CardUsesAbility;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,8 +26,11 @@ public class Match {
     private Player player1;
     @Getter @Setter
     private Player player2;
+    @Getter @Setter
     private Input input;
+    @Getter @Setter
     private GameInput gameInput;
+    @Getter @Setter
     private ArrayNode output;
     @Getter @Setter
     private Board board;
@@ -76,6 +80,7 @@ public class Match {
 
     public void playGame() {
         for (ActionsInput actionsInput : this.gameInput.getActions()) {
+            System.out.println(actionsInput.getCommand());
             switch (actionsInput.getCommand()) {
 
                 // Gameplay commands
@@ -102,12 +107,12 @@ public class Match {
                 }
                 case "cardUsesAttack" -> {
                     CardUsesAttack cardUsesAttack = new CardUsesAttack();
-                    cardUsesAttack.action(this, output, actionsInput, board);
+                    cardUsesAttack.action(output, actionsInput, board);
                 }
-//                case "cardUsesAbility" -> {
-//                    CardUsesAbility cardUsesAbility = new CardUsesAbility();
-//                    TODO
-//                }
+                case "cardUsesAbility" -> {
+                    CardUsesAbility cardUsesAbility = new CardUsesAbility();
+//                    cardUsesAbility.action(output, actionsInput, board);
+                }
 //                case "useAttackHero" -> {
 //                    UseAttackHero useAttackHero = new UseAttackHero();
 //                    TODO
@@ -145,7 +150,7 @@ public class Match {
                 }
                 case "getCardAtPosition" -> {
                     GetCardAtPosition getCardAtPosition = new GetCardAtPosition();
-                    getCardAtPosition.action(this, output, actionsInput, board);
+                    getCardAtPosition.action(output, actionsInput, board);
                 }
                 case "getPlayerMana" -> {
                     GetPlayerMana getPlayerMana = new GetPlayerMana();

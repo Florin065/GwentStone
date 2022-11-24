@@ -117,18 +117,6 @@
     "colors" : [ "Red", "White", "Grey" ]
   } ]
 }, {
-  "command" : "cardUsesAttack",
-  "x" : 0,
-  "y" : 0,
-  "output" : {
-    "mana" : 2,
-    "name" : "Berserker",
-    "description" : "Premium card: Fear him. Your last breath is now.",
-    "colors" : [ "Purple", "Yellow" ],
-    "attackDamage" : 2,
-    "health" : 2
-  }
-}, {
   "command" : "getPlayerTurn",
   "output" : 1
 }, {
@@ -144,23 +132,11 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "attackDamage" : 2,
-    "health" : 2
+    "health" : 1
   }
 }, {
   "command" : "getPlayerTurn",
   "output" : 2
-}, {
-  "command" : "cardUsesAttack",
-  "x" : 0,
-  "y" : 0,
-  "output" : {
-    "mana" : 2,
-    "name" : "Berserker",
-    "description" : "Premium card: Fear him. Your last breath is now.",
-    "colors" : [ "Purple", "Yellow" ],
-    "attackDamage" : 2,
-    "health" : 2
-  }
 }, {
   "command" : "getCardAtPosition",
   "x" : 2,
@@ -172,18 +148,6 @@
     "colors" : [ "Red", "Black" ],
     "attackDamage" : 5,
     "health" : 4
-  }
-}, {
-  "command" : "cardUsesAttack",
-  "x" : 0,
-  "y" : 0,
-  "output" : {
-    "mana" : 2,
-    "name" : "Berserker",
-    "description" : "Premium card: Fear him. Your last breath is now.",
-    "colors" : [ "Purple", "Yellow" ],
-    "attackDamage" : 2,
-    "health" : 2
   }
 }, {
   "command" : "getFrozenCardsOnTable",
@@ -216,7 +180,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "attackDamage" : 2,
-    "health" : 2
+    "health" : 1
   }
 }, {
   "command" : "getFrozenCardsOnTable",
@@ -229,18 +193,6 @@
   "command" : "getPlayerTurn",
   "output" : 2
 }, {
-  "command" : "cardUsesAttack",
-  "x" : 0,
-  "y" : 0,
-  "output" : {
-    "mana" : 2,
-    "name" : "Berserker",
-    "description" : "Premium card: Fear him. Your last breath is now.",
-    "colors" : [ "Purple", "Yellow" ],
-    "attackDamage" : 2,
-    "health" : 2
-  }
-}, {
   "command" : "getCardsOnTable",
   "output" : [ [ {
     "mana" : 2,
@@ -248,14 +200,14 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "attackDamage" : 2,
-    "health" : 2
+    "health" : 1
   }, {
     "mana" : 3,
     "name" : "Disciple",
     "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
     "colors" : [ "Green", "Yellow", "Blue" ],
     "attackDamage" : 0,
-    "health" : 2
+    "health" : -1
   } ], [ {
     "mana" : 4,
     "name" : "The Ripper",
@@ -290,7 +242,7 @@
     "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
     "colors" : [ "Brown", "Black", "Grey" ],
     "attackDamage" : 1,
-    "health" : 7
+    "health" : 2
   }, {
     "mana" : 5,
     "name" : "Miraj",
