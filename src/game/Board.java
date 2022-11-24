@@ -32,6 +32,13 @@ public class Board {
         return false;
     }
 
+    public boolean rowBelongsToEnemy(int rowIdx, int friendlyIdx) {
+        if (friendlyIdx == 1) {
+            return rowIdx == 0 || rowIdx == 1;
+        }
+        return rowIdx == 2 || rowIdx == 3;
+    }
+
     public boolean enemyHasTank(int currentPlayerIdx) {
         if (currentPlayerIdx == 1)
             return rowHasTank(0) || rowHasTank(1);

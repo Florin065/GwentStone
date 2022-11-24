@@ -2,6 +2,7 @@ package game.cards;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fileio.CardInput;
+import game.Board;
 import game.cards.Card;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,6 @@ public class Hero extends Card {
         this.health = hero.getHealth();
     }
 
-    public void useHeroAbility() {
+    public void useHeroAbility(int affectedRow, Board board) {
     }
 }

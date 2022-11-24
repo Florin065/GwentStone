@@ -43,6 +43,7 @@ public class CardUsesAbility {
             output.add(node);
             return;
         }
+
         // Corner Case 2
         if (attacker.isUsedAction()) {
             node.put("error", "Attacker card has already attacked this turn.");
@@ -62,6 +63,7 @@ public class CardUsesAbility {
                 output.add(node);
                 return;
             }
+            // Corner Case 4
         } else {
             if (rowCurrent) {
                 node.put("error", "Attacked card does not belong to the enemy.");

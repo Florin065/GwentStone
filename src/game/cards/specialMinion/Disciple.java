@@ -8,7 +8,6 @@ public class Disciple extends Minion {
     final static int HEAL = 2;
     public Disciple(CardInput cardInput) {
         super(cardInput);
-        setAttackDamage(0);
     }
 
     @Override

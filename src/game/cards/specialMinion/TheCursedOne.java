@@ -7,7 +7,6 @@ import game.cards.Minion;
 public class TheCursedOne extends Minion {
     public TheCursedOne(CardInput cardInput) {
         super(cardInput);
-        setAttackDamage(0);
     }
 
     @Override

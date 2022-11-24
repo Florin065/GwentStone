@@ -33,20 +33,21 @@ public class UseAttackHero {
         node.put("command", "useAttackHero");
         node.putPOJO("cardAttacker", actionsInput.getCardAttacker());
 
-        // Corner Case 2
+        // Corner Case 1
         if (attacker.isUsedAction()) {
             node.put("error", "Attacker card has already attacked this turn.");
             output.add(node);
             return;
         }
-        // Corner Case 3
+
+        // Corner Case 2
         if (attacker.isFrozen()) {
             node.put("error", "Attacker card is frozen.");
             output.add(node);
             return;
         }
 
-        // Corner Case 4
+        // Corner Case 3
         if (board.enemyHasTank(attackerIdx)) {
             node.put("error", "Attacked card is not of type 'Tank'.");
             output.add(node);

@@ -11,6 +11,9 @@ import game.commands.Test1.GetPlayerDeck;
 import game.commands.Test1.GetPlayerHero;
 import game.commands.Test1.GetPlayerTurn;
 import game.commands.Test10.UseAttackHero;
+import game.commands.Test12.UseHeroAbility;
+import game.commands.Test16.getTotalGamesPlayed;
+import game.commands.Test17.getPlayerWins;
 import game.commands.Test2.*;
 import game.commands.Test4.GetCardAtPosition;
 import game.commands.Test4.GetEnvironmentCardsInHand;
@@ -21,6 +24,7 @@ import game.commands.Test8.CardUsesAbility;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
@@ -54,6 +58,10 @@ public class Match {
         this.input          = input;
         this.gameInput      = gameInput;
         this.output         = output;
+        this.player1.setMana(0);
+        this.player2.setMana(0);
+        this.player1.setCurrentHand(new ArrayList<>());
+        this.player2.setCurrentHand(new ArrayList<>());
         this.player1.setCurrentDeck(CardGen.getDeck(input.getPlayerOneDecks(), gameInput.getStartGame().getPlayerOneDeckIdx()));
         this.player2.setCurrentDeck(CardGen.getDeck(input.getPlayerTwoDecks(), gameInput.getStartGame().getPlayerTwoDeckIdx()));
         this.player1.setHero(CardGen.getCard(gameInput.getStartGame().getPlayerOneHero()));
@@ -135,10 +143,10 @@ public class Match {
                     UseAttackHero useAttackHero = new UseAttackHero();
                     useAttackHero.action(output, actionsInput, board, this);
                 }
-//                case "useHeroAbility" -> {
-//                    UseHeroAbility useHeroAbility = new UseHeroAbility();
-//                    TODO
-//                }
+                case "useHeroAbility" -> {
+                    UseHeroAbility useHeroAbility = new UseHeroAbility();
+                    useHeroAbility.action(output, actionsInput, board, this);
+                }
                 case "useEnvironmentCard" -> {
                     UseEnvironmentCard useEnvironmentCard = new UseEnvironmentCard();
                     useEnvironmentCard.action(this, output, actionsInput, board, playerTurn);
@@ -185,28 +193,14 @@ public class Match {
 
                 // Statistics commands
 
-//                case "getTotalGamesPlayed" -> {
-//                    GetTotalGamesPlayed getTotalGamesPlayed = new GetTotalGamesPlayed();
-//                    TODO
-//                }
-//                case "getPlayerOneWins" -> {
-//                    GetPlayerWins getPlayerOneWins = new GetPlayerWins();
-//
-//                    if (actionsInput.getPlayerIdx() == 1) {
-//                        getPlayerOneWins.action();
-//                    }
-
-//                    TODO
-//                }
-//                case "getPlayerTwoWins" -> {
-//                    GetPlayerWins getPlayerTwoWins = new GetPlayerWins();
-//
-//                    if (actionsInput.getPlayerIdx() == 2) {
-//                        getPlayerTwoWins.action();
-//                    }
-
-//                    TODO
-//                }
+                case "getTotalGamesPlayed" -> {
+                    getTotalGamesPlayed getTotalGamesPlayed = new getTotalGamesPlayed();
+                    getTotalGamesPlayed.action(this, output);
+                }
+                case "getPlayerOneWins", "getPlayerTwoWins" -> {
+                    getPlayerWins getPlayerWins = new getPlayerWins();
+                    getPlayerWins.action(this, output, actionsInput);
+                }
             }
         }
     }

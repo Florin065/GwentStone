@@ -10,7 +10,19 @@ public class LordRoyce extends Hero {
         super(cardInput);
     }
 
-    public void useHeroAbility(Board board, Minion minion) {
+    @Override
+    public void useHeroAbility(int affectedRow, Board board) {
+        int cardMaxDamage = 0;
+        Minion card = null;
 
+        for (Minion affectedCard : board.getCards().get(affectedRow)) {
+            if (affectedCard.getAttackDamage() > cardMaxDamage) {
+                cardMaxDamage = affectedCard.getHealth();
+                card = affectedCard;
+            }
+        }
+
+        if (card != null)
+            card.setFrozen(true);
     }
 }
