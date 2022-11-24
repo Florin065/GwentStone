@@ -14,16 +14,28 @@ public class Card {
     @Getter @Setter
     private String description;
     @Getter @Setter
-    ArrayList<String> colors;
+    private ArrayList<String> colors;
 
-    public Card(CardInput cardInput) {
+    /**
+     *
+     * @param cardInput
+     */
+    public Card(final CardInput cardInput) {
         this.mana = cardInput.getMana();
         this.name = cardInput.getName();
         this.description = cardInput.getDescription();
         this.colors = cardInput.getColors();
     }
 
-    public Card(int mana, String name, String description, ArrayList<String> colors) {
+    /**
+     *
+     * @param mana
+     * @param name
+     * @param description
+     * @param colors
+     */
+    public Card(final int mana, final String name,
+                final String description, final ArrayList<String> colors) {
         this.mana = mana;
         this.name = name;
         this.description = description;
@@ -33,7 +45,11 @@ public class Card {
     public Card() {
     }
 
-    public Card(Card card) {
+    /**
+     *
+     * @param card
+     */
+    public Card(final Card card) {
         this.mana = card.mana;
         this.colors = card.colors;
         this.description = card.description;

@@ -6,12 +6,17 @@ import game.cards.Minion;
 
 import java.util.ArrayList;
 
-public class GetFrozenCardsOnTable {
-    public void action(ArrayNode output, Board board) {
+public final class GetFrozenCardsOnTable {
+    /**
+     *
+     * @param output
+     * @param board
+     */
+    public void action(final ArrayNode output, final Board board) {
         ArrayList<ArrayList<Minion>> frozenList = new ArrayList<>();
         ArrayList<Minion> empty = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2 + 2; i++) {
             frozenList.add(new ArrayList<>());
 
             for (Minion minion : board.getCards().get(i)) {
@@ -24,7 +29,7 @@ public class GetFrozenCardsOnTable {
 
         boolean emptyCheck = true;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2 + 2; i++) {
             if (frozenList.get(i).size() != 0) {
                 emptyCheck = false;
                 break;
@@ -34,8 +39,7 @@ public class GetFrozenCardsOnTable {
         if (emptyCheck) {
             output.addObject().put("command", "getFrozenCardsOnTable")
                     .putPOJO("output", empty);
-        }
-        else {
+        } else {
             output.addObject().put("command", "getFrozenCardsOnTable")
                     .putPOJO("output", frozenList);
         }

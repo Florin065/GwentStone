@@ -5,12 +5,23 @@ import game.Board;
 import game.cards.Environment;
 import game.cards.Minion;
 
-public class HeartHound extends Environment {
-    public HeartHound(CardInput cardInput) {
+public final class HeartHound extends Environment {
+    /**
+     *
+     * @param cardInput
+     */
+    public HeartHound(final CardInput cardInput) {
         super(cardInput);
     }
 
-    public void useHeartHoundAbility(int affectedRow, int toMoveRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param toMoveRow
+     * @param board
+     */
+    public void useHeartHoundAbility(
+            final int affectedRow, final int toMoveRow, final Board board) {
         int cardMaxHealth = 0;
 
         for (Minion affectedCard : board.getCards().get(affectedRow)) {

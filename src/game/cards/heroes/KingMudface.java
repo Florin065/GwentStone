@@ -5,13 +5,22 @@ import game.Board;
 import game.cards.Hero;
 import game.cards.Minion;
 
-public class KingMudface extends Hero {
-    public KingMudface(CardInput cardInput) {
+public final class KingMudface extends Hero {
+    /**
+     *
+     * @param cardInput
+     */
+    public KingMudface(final CardInput cardInput) {
         super(cardInput);
     }
 
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
     @Override
-    public void useHeroAbility(int affectedRow, Board board) {
+    public void useHeroAbility(final int affectedRow, final Board board) {
         for (Minion affectedCard : board.getCards().get(affectedRow)) {
             affectedCard.setHealth(affectedCard.getHealth() + 1);
         }

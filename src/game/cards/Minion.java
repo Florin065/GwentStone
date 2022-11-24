@@ -18,7 +18,11 @@ public class Minion extends Card {
     @Getter @Setter @JsonIgnore
     private boolean usedAction;
 
-    public Minion(CardInput cardInput) {
+    /**
+     *
+     * @param cardInput
+     */
+    public Minion(final CardInput cardInput) {
         super(cardInput);
         this.attackDamage = cardInput.getAttackDamage();
         this.health = cardInput.getHealth();
@@ -27,7 +31,11 @@ public class Minion extends Card {
         this.usedAction = false;
     }
 
-    public Minion(Minion minion) {
+    /**
+     *
+     * @param minion
+     */
+    public Minion(final Minion minion) {
         super(minion.getMana(), minion.getName(), minion.getDescription(), minion.getColors());
         this.attackDamage = minion.getAttackDamage();
         this.health = minion.getHealth();
@@ -36,15 +44,27 @@ public class Minion extends Card {
         this.usedAction = false;
     }
 
-    public void useAttack(Minion attacked) {
+    /**
+     *
+     * @param attacked
+     */
+    public void useAttack(final Minion attacked) {
         attacked.setHealth(attacked.getHealth() - getAttackDamage());
     }
 
-    public void useAttackHero(Hero hero) {
+    /**
+     *
+     * @param hero
+     */
+    public void useAttackHero(final Hero hero) {
         hero.setHealth(hero.getHealth() - getAttackDamage());
     }
 
-    public void useAbility(Minion attacked, Board board) {
-
+    /**
+     *
+     * @param attacked
+     * @param board
+     */
+    public void useAbility(final Minion attacked, final Board board) {
     }
 }

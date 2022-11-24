@@ -5,8 +5,12 @@ import fileio.GameInput;
 import fileio.Input;
 
 public class Game {
-
-    public static void gameInit(Input input, ArrayNode output) {
+    /**
+     *
+     * @param input
+     * @param output
+     */
+    public static void gameInit(final Input input, final ArrayNode output) {
         Player player1 = new Player();
         Player player2 = new Player();
 

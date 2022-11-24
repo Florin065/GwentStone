@@ -5,13 +5,22 @@ import game.Board;
 import game.cards.Hero;
 import game.cards.Minion;
 
-public class LordRoyce extends Hero {
-    public LordRoyce(CardInput cardInput) {
+public final class LordRoyce extends Hero {
+    /**
+     *
+     * @param cardInput
+     */
+    public LordRoyce(final CardInput cardInput) {
         super(cardInput);
     }
 
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
     @Override
-    public void useHeroAbility(int affectedRow, Board board) {
+    public void useHeroAbility(final int affectedRow, final Board board) {
         int cardMaxDamage = 0;
         Minion card = null;
 
@@ -22,7 +31,8 @@ public class LordRoyce extends Hero {
             }
         }
 
-        if (card != null)
+        if (card != null) {
             card.setFrozen(true);
+        }
     }
 }

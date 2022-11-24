@@ -16,8 +16,14 @@ import game.cards.witchery.Winterfell;
 
 import java.util.ArrayList;
 
-public class CardGen {
-    public static ArrayList<Card> getDeck(DecksInput decksInput, int deckIdx) {
+public final class CardGen {
+    /**
+     *
+     * @param decksInput
+     * @param deckIdx
+     * @return
+     */
+    public static ArrayList<Card> getDeck(final DecksInput decksInput, final int deckIdx) {
         ArrayList<Card> deck = new ArrayList<>();
 
         for (CardInput cardInput : decksInput.getDecks().get(deckIdx)) {
@@ -26,7 +32,12 @@ public class CardGen {
         return deck;
     }
 
-    public static Card getCard(CardInput cardInput) {
+    /**
+     *
+     * @param cardInput
+     * @return
+     */
+    public static Card getCard(final CardInput cardInput) {
         switch (cardInput.getName()) {
             // specialMinion
             case "The Ripper" -> {

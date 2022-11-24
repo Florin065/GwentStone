@@ -10,11 +10,15 @@ import game.cards.CardGen;
 import game.commands.Test1.GetPlayerDeck;
 import game.commands.Test1.GetPlayerHero;
 import game.commands.Test1.GetPlayerTurn;
+import game.commands.Test2.EndPlayerTurn;
+import game.commands.Test2.GetCardsInHand;
+import game.commands.Test2.GetCardsOnTable;
+import game.commands.Test2.PlaceCard;
+import game.commands.Test2.GetPlayerMana;
 import game.commands.Test10.UseAttackHero;
 import game.commands.Test12.UseHeroAbility;
-import game.commands.Test16.getTotalGamesPlayed;
-import game.commands.Test17.getPlayerWins;
-import game.commands.Test2.*;
+import game.commands.Test16.GetTotalGamesPlayed;
+import game.commands.Test17.GetPlayerWins;
 import game.commands.Test4.GetCardAtPosition;
 import game.commands.Test4.GetEnvironmentCardsInHand;
 import game.commands.Test4.UseEnvironmentCard;
@@ -28,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Match {
+public final class Match {
     @Getter @Setter
     private Player player1;
     @Getter @Setter
@@ -52,7 +56,18 @@ public class Match {
     @Getter @Setter
     private int roundCounter;
 
-    public Match(Player player1, Player player2, Input input, GameInput gameInput, ArrayNode output) {
+    /**
+     *
+     * @param player1
+     * @param player2
+     * @param input
+     * @param gameInput
+     * @param output
+     */
+    public Match(
+            final Player player1, final Player player2,
+             final Input input, final GameInput gameInput,
+             final ArrayNode output) {
         this.player1        = player1;
         this.player2        = player2;
         this.input          = input;
@@ -62,12 +77,22 @@ public class Match {
         this.player2.setMana(0);
         this.player1.setCurrentHand(new ArrayList<>());
         this.player2.setCurrentHand(new ArrayList<>());
-        this.player1.setCurrentDeck(CardGen.getDeck(input.getPlayerOneDecks(), gameInput.getStartGame().getPlayerOneDeckIdx()));
-        this.player2.setCurrentDeck(CardGen.getDeck(input.getPlayerTwoDecks(), gameInput.getStartGame().getPlayerTwoDeckIdx()));
+        this.player1.setCurrentDeck(
+                CardGen.getDeck(
+                        input.getPlayerOneDecks(),
+                                gameInput.getStartGame().getPlayerOneDeckIdx()));
+        this.player2.setCurrentDeck(
+                CardGen.getDeck(
+                        input.getPlayerTwoDecks(),
+                                gameInput.getStartGame().getPlayerTwoDeckIdx()));
         this.player1.setHero(CardGen.getCard(gameInput.getStartGame().getPlayerOneHero()));
         this.player2.setHero(CardGen.getCard(gameInput.getStartGame().getPlayerTwoHero()));
-        Collections.shuffle(this.player1.getCurrentDeck(), new Random(gameInput.getStartGame().getShuffleSeed()));
-        Collections.shuffle(this.player2.getCurrentDeck(), new Random(gameInput.getStartGame().getShuffleSeed()));
+        Collections.shuffle(
+                this.player1.getCurrentDeck(),
+                        new Random(gameInput.getStartGame().getShuffleSeed()));
+        Collections.shuffle(
+                this.player2.getCurrentDeck(),
+                        new Random(gameInput.getStartGame().getShuffleSeed()));
         this.playerTurn     = gameInput.getStartGame().getStartingPlayer();
         this.initialTurn    = gameInput.getStartGame().getStartingPlayer();
         this.roundCounter   = 1;
@@ -75,21 +100,27 @@ public class Match {
         round();
     }
 
+    /**
+     *  round init
+     */
     public void round() {
-        if (roundCounter < 10) {
+        if (roundCounter < 2 + 2 + 2 + 2 + 2) {
             player1.setMana(player1.getMana() + roundCounter);
             player2.setMana(player2.getMana() + roundCounter);
-        }
-        else {
-            player1.setMana(player1.getMana() + 10);
-            player2.setMana(player2.getMana() + 10);
+        } else {
+            player1.setMana(player1.getMana() + 2 + 2 + 2 + 2 + 2);
+            player2.setMana(player2.getMana() + 2 + 2 + 2 + 2 + 2);
         }
 
         player1.getCardInHand();
         player2.getCardInHand();
     }
 
-    public void endMatch(int attackerIdx) {
+    /**
+     *
+     * @param attackerIdx
+     */
+    public void endMatch(final int attackerIdx) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
         if (attackerIdx == 1) {
@@ -104,9 +135,11 @@ public class Match {
         player2.setPlays(player2.getPlays() + 1);
     }
 
+    /**
+     *  switch for commands
+     */
     public void playGame() {
         for (ActionsInput actionsInput : this.gameInput.getActions()) {
-            System.out.println(actionsInput.getCommand());
             switch (actionsInput.getCommand()) {
 
                 // Gameplay commands
@@ -117,8 +150,7 @@ public class Match {
 
                     if (this.playerTurn == 1) {
                         this.playerTurn = 2;
-                    }
-                    else {
+                    } else {
                         this.playerTurn = 1;
                     }
 
@@ -129,7 +161,7 @@ public class Match {
                 }
                 case "placeCard" -> {
                     PlaceCard placeCard = new PlaceCard();
-                    placeCard.action(this, output, actionsInput, gameInput, board);
+                    placeCard.action(this, output, actionsInput, board);
                 }
                 case "cardUsesAttack" -> {
                     CardUsesAttack cardUsesAttack = new CardUsesAttack();
@@ -145,7 +177,7 @@ public class Match {
                 }
                 case "useHeroAbility" -> {
                     UseHeroAbility useHeroAbility = new UseHeroAbility();
-                    useHeroAbility.action(output, actionsInput, board, this);
+                    useHeroAbility.action(this, output, actionsInput, board);
                 }
                 case "useEnvironmentCard" -> {
                     UseEnvironmentCard useEnvironmentCard = new UseEnvironmentCard();
@@ -183,8 +215,10 @@ public class Match {
                     getPlayerMana.action(this, output, actionsInput.getPlayerIdx());
                 }
                 case "getEnvironmentCardsInHand" -> {
-                    GetEnvironmentCardsInHand getEnvironmentCardsInHand = new GetEnvironmentCardsInHand();
-                    getEnvironmentCardsInHand.action(this, output, actionsInput.getPlayerIdx());
+                    GetEnvironmentCardsInHand getEnvironmentCardsInHand
+                            = new GetEnvironmentCardsInHand();
+                    getEnvironmentCardsInHand
+                            .action(this, output, actionsInput.getPlayerIdx());
                 }
                 case "getFrozenCardsOnTable" -> {
                     GetFrozenCardsOnTable getFrozenCardsOnTable = new GetFrozenCardsOnTable();
@@ -194,12 +228,15 @@ public class Match {
                 // Statistics commands
 
                 case "getTotalGamesPlayed" -> {
-                    getTotalGamesPlayed getTotalGamesPlayed = new getTotalGamesPlayed();
+                    GetTotalGamesPlayed getTotalGamesPlayed = new GetTotalGamesPlayed();
                     getTotalGamesPlayed.action(this, output);
                 }
                 case "getPlayerOneWins", "getPlayerTwoWins" -> {
-                    getPlayerWins getPlayerWins = new getPlayerWins();
+                    GetPlayerWins getPlayerWins = new GetPlayerWins();
                     getPlayerWins.action(this, output, actionsInput);
+                }
+                default -> {
+                    return;
                 }
             }
         }

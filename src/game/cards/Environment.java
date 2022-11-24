@@ -3,27 +3,50 @@ package game.cards;
 import fileio.CardInput;
 import game.Board;
 
-import java.util.ArrayList;
-
 public class Environment extends Card {
-    public Environment(CardInput cardInput) {
+    /**
+     *
+     * @param cardInput
+     */
+    public Environment(final CardInput cardInput) {
         super(cardInput);
     }
 
     public Environment() {
     }
 
-    public Environment(Card card) {
+    /**
+     *
+     * @param card
+     */
+    public Environment(final Card card) {
         super(card);
     }
 
-    public void useFirestormAbility(int affectedRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
+    public void useFirestormAbility(final int affectedRow, final Board board) {
     }
 
-    public void useWinterfellAbility(int affectedRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
+    public void useWinterfellAbility(final int affectedRow, final Board board) {
     }
 
-    public void useHeartHoundAbility(int affectedRow, int toMoveRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param toMoveRow
+     * @param board
+     */
+    public void useHeartHoundAbility(
+            final int affectedRow, final int toMoveRow, final Board board) {
     }
 }
 

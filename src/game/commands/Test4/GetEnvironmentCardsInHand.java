@@ -3,15 +3,20 @@ package game.commands.Test4;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import fileio.CardInput;
 import game.Match;
 import game.cards.Card;
 import game.cards.Environment;
 
 import java.util.ArrayList;
 
-public class GetEnvironmentCardsInHand {
-    public void action(Match match, ArrayNode output, int playerIdx) {
+public final class GetEnvironmentCardsInHand {
+    /**
+     *
+     * @param match
+     * @param output
+     * @param playerIdx
+     */
+    public void action(final Match match, final ArrayNode output, final int playerIdx) {
         ArrayList<Card> envList = new ArrayList<>();
         ArrayList<Card> envListCopy;
 
@@ -28,8 +33,7 @@ public class GetEnvironmentCardsInHand {
                 }
             }
 
-        }
-        else {
+        } else {
             for (Card env : match.getPlayer2().getCurrentHand()) {
                 if (env instanceof Environment) {
                     envList.add(env);

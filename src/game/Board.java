@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
-public class Board {
+public final class Board {
     @Getter @Setter
     private ArrayList<ArrayList<Minion>> cards;
 
@@ -18,31 +18,53 @@ public class Board {
         cards.add(new ArrayList<>());
     }
 
-    public void removeMinionOnTable(Minion card) {
+    /**
+     *
+     * @param card
+     */
+    public void removeMinionOnTable(final Minion card) {
         for (ArrayList<Minion> row : cards) {
             row.remove(card);
         }
     }
 
-    public boolean rowHasTank(int rowIdx) {
+    /**
+     *
+     * @param rowIdx
+     * @return
+     */
+    public boolean rowHasTank(final int rowIdx) {
         for (Minion minion : cards.get(rowIdx)) {
-            if (minion.isTank())
+            if (minion.isTank()) {
                 return true;
+            }
         }
         return false;
     }
 
-    public boolean rowBelongsToEnemy(int rowIdx, int friendlyIdx) {
+    /**
+     *
+     * @param rowIdx
+     * @param friendlyIdx
+     * @return
+     */
+    public boolean rowBelongsToEnemy(final int rowIdx, final int friendlyIdx) {
         if (friendlyIdx == 1) {
             return rowIdx == 0 || rowIdx == 1;
         }
-        return rowIdx == 2 || rowIdx == 3;
+        return rowIdx == 2 || rowIdx == 2 + 1;
     }
 
-    public boolean enemyHasTank(int currentPlayerIdx) {
-        if (currentPlayerIdx == 1)
+    /**
+     *
+     * @param currentPlayerIdx
+     * @return
+     */
+    public boolean enemyHasTank(final int currentPlayerIdx) {
+        if (currentPlayerIdx == 1) {
             return rowHasTank(0) || rowHasTank(1);
-        else
-            return rowHasTank(2) || rowHasTank(3);
+        } else {
+            return rowHasTank(2) || rowHasTank(2 + 1);
+        }
     }
 }

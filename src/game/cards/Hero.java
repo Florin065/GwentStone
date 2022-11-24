@@ -3,11 +3,8 @@ package game.cards;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fileio.CardInput;
 import game.Board;
-import game.cards.Card;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
 
 public class Hero extends Card {
     @Getter @Setter
@@ -15,7 +12,11 @@ public class Hero extends Card {
     @Getter @Setter @JsonIgnore
     private boolean usedAction;
 
-    public Hero(CardInput cardInput) {
+    /**
+     *
+     * @param cardInput
+     */
+    public Hero(final CardInput cardInput) {
         super(cardInput);
         this.health = 30;
         this.usedAction = false;
@@ -24,11 +25,20 @@ public class Hero extends Card {
     public Hero() {
     }
 
-    public Hero(Hero hero) {
+    /**
+     *
+     * @param hero
+     */
+    public Hero(final Hero hero) {
         super(hero);
         this.health = hero.getHealth();
     }
 
-    public void useHeroAbility(int affectedRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
+    public void useHeroAbility(final int affectedRow, final Board board) {
     }
 }

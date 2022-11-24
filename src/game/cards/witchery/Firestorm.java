@@ -5,12 +5,21 @@ import game.Board;
 import game.cards.Environment;
 import game.cards.Minion;
 
-public class Firestorm extends Environment {
-    public Firestorm(CardInput cardInput) {
+public final class Firestorm extends Environment {
+    /**
+     *
+     * @param cardInput
+     */
+    public Firestorm(final CardInput cardInput) {
         super(cardInput);
     }
 
-    public void useFirestormAbility(int affectedRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
+    public void useFirestormAbility(final int affectedRow, final Board board) {
         for (Minion affectedCard : board.getCards().get(affectedRow)) {
             affectedCard.setHealth(affectedCard.getHealth() - 1);
         }

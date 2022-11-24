@@ -5,8 +5,14 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import game.Match;
 
-public class GetPlayerDeck {
-    public void action(Match match, ArrayNode output, int playerIdx) {
+public final class GetPlayerDeck {
+    /**
+     *
+     * @param match
+     * @param output
+     * @param playerIdx
+     */
+    public void action(final Match match, final ArrayNode output, final int playerIdx) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
 
@@ -15,8 +21,7 @@ public class GetPlayerDeck {
 
         if (playerIdx == 1) {
             node.putPOJO("output", match.getPlayer1().getCurrentDeck());
-        }
-        else {
+        } else {
             node.putPOJO("output", match.getPlayer2().getCurrentDeck());
         }
 

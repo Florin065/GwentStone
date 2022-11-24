@@ -6,26 +6,23 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import game.Board;
 import game.Match;
-import game.Player;
 import game.cards.Minion;
 
-import java.util.ArrayList;
-
-public class CardUsesAbility {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board, Match match) {
+public final class CardUsesAbility {
+    /**
+     *
+     * @param output
+     * @param actionsInput
+     * @param board
+     * @param match
+     */
+    public void action(
+            final ArrayNode output, final ActionsInput actionsInput,
+             final Board board, final Match match) {
         int attackerX = actionsInput.getCardAttacker().getX();
         int attackerY = actionsInput.getCardAttacker().getY();
         int attackedX = actionsInput.getCardAttacked().getX();
         int attackedY = actionsInput.getCardAttacked().getY();
-
-        Player current;
-
-        if (attackerX == 0 || attackerX == 1) {
-            current = match.getPlayer2();
-        }
-        else if (attackerX == 2 || attackerX == 3) {
-            current = match.getPlayer1();
-        }
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
@@ -53,8 +50,8 @@ public class CardUsesAbility {
 
         boolean rowCurrent = (((attackerX == 0 || attackerX == 1)
                 && (attackedX == 0 || attackedX == 1))
-                || ((attackerX == 2 || attackerX == (2 + 1))
-                && (attackedX == 2 || attackedX == (2 + 1))));
+                || ((attackerX == 2 || attackerX == 2 + 1)
+                && (attackedX == 2 || attackedX == 2 + 1)));
 
         // Corner Case 3 -> medic
         if (attacker.getName().equals("Disciple")) {

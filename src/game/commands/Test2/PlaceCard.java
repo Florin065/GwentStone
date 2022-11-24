@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
-import fileio.GameInput;
 import game.Board;
 import game.Match;
 import game.cards.Card;
@@ -13,8 +12,16 @@ import game.cards.Minion;
 
 import java.util.ArrayList;
 
-public class PlaceCard {
-    public void action(Match match, ArrayNode output, ActionsInput actionsInput, GameInput gameInput, Board board) {
+public final class PlaceCard {
+    /**
+     * @param match
+     * @param output
+     * @param actionsInput
+     * @param board
+     */
+    public void action(
+            final Match match, final ArrayNode output,
+            final ActionsInput actionsInput, final Board board) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
         node.put("command", "placeCard");
@@ -44,28 +51,27 @@ public class PlaceCard {
 
             if (cardName.equals("The Ripper") || cardName.equals("Miraj")
                     || cardName.equals("Goliath") || cardName.equals("Warden")) {
-                if (board.getCards().get(2).size() == 5) {
+                if (board.getCards().get(2).size() == 2 + 2 + 1) {
                     node.put("error", "Cannot place card on table since row is full.");
                     output.add(node);
                     return;
                 }
 
-                board.getCards().get(2).add((Minion) currentHand.remove(actionsInput.getHandIdx()));
-            }
-            else if (cardName.equals("Sentinel") || cardName.equals("Berserker")
+                board.getCards().get(2)
+                        .add((Minion) currentHand.remove(actionsInput.getHandIdx()));
+            } else if (cardName.equals("Sentinel") || cardName.equals("Berserker")
                     || cardName.equals("The Cursed One") || cardName.equals("Disciple")) {
-                if (board.getCards().get(3).size() == 5) {
+                if (board.getCards().get(1 + 2).size() == 2 + 2 + 1) {
                     node.put("error", "Cannot place card on table since row is full.");
                     output.add(node);
                     return;
                 }
-                board.getCards().get(3).add((Minion) currentHand.remove(actionsInput.getHandIdx()));
+                board.getCards().get(1 + 2)
+                        .add((Minion) currentHand.remove(actionsInput.getHandIdx()));
             }
 
             match.getPlayer1().setMana(playerMana - cardMana);
-        }
-        // player 2 turn
-        else if (match.getPlayerTurn() == 2
+        } else if (match.getPlayerTurn() == 2
                 && match.getPlayer2().getCurrentHand().size() > actionsInput.getHandIdx()) {
             Card card = match.getPlayer2().getCurrentHand().get(actionsInput.getHandIdx());
 
@@ -89,21 +95,22 @@ public class PlaceCard {
 
             if (cardName.equals("The Ripper") || cardName.equals("Miraj")
                     || cardName.equals("Goliath") || cardName.equals("Warden")) {
-                if (board.getCards().get(1).size() == 5) {
+                if (board.getCards().get(1).size() == 2 + 2 + 1) {
                     node.put("error", "Cannot place card on table since row is full.");
                     output.add(node);
                     return;
                 }
-                board.getCards().get(1).add((Minion) currentHand.remove(actionsInput.getHandIdx()));
-            }
-            else if (cardName.equals("Sentinel") || cardName.equals("Berserker")
+                board.getCards().get(1)
+                        .add((Minion) currentHand.remove(actionsInput.getHandIdx()));
+            } else if (cardName.equals("Sentinel") || cardName.equals("Berserker")
                     || cardName.equals("The Cursed One") || cardName.equals("Disciple")) {
-                if (board.getCards().get(0).size() == 5) {
+                if (board.getCards().get(0).size() == 2 + 2 + 1) {
                     node.put("error", "Cannot place card on table since row is full.");
                     output.add(node);
                     return;
                 }
-                board.getCards().get(0).add((Minion) currentHand.remove(actionsInput.getHandIdx()));
+                board.getCards().get(0)
+                        .add((Minion) currentHand.remove(actionsInput.getHandIdx()));
             }
 
             match.getPlayer2().setMana(playerMana - cardMana);

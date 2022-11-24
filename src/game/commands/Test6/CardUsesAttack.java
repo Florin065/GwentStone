@@ -9,8 +9,15 @@ import game.cards.Minion;
 
 import java.util.ArrayList;
 
-public class CardUsesAttack {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board) {
+public final class CardUsesAttack {
+    /**
+     *
+     * @param output
+     * @param actionsInput
+     * @param board
+     */
+    public void action(
+            final ArrayNode output, final ActionsInput actionsInput, final Board board) {
         int attackerX = actionsInput.getCardAttacker().getX();
         int attackerY = actionsInput.getCardAttacker().getY();
         int attackedX = actionsInput.getCardAttacked().getX();
@@ -18,13 +25,11 @@ public class CardUsesAttack {
 
         Minion attacker = board.getCards().get(attackerX).get(attackerY);
         Minion attacked = board.getCards().get(attackedX).get(attackedY);
-        
         int attackerIdx = 0;
 
         if (attackerX == 0 || attackerX == 1) {
             attackerIdx = 2;
-        }
-        else if (attackerX == 2 || attackerX == 3) {
+        } else if (attackerX == 2 || attackerX == 2 + 1) {
             attackerIdx = 1;
         }
 
@@ -38,8 +43,8 @@ public class CardUsesAttack {
         // Corner Case 1
         if (((attackerX == 0 || attackerX == 1)
                 && (attackedX == 0 || attackedX == 1))
-                || ((attackerX == 2 || attackerX == (2 + 1))
-                && (attackedX == 2 || attackedX == (2 + 1)))) {
+                || ((attackerX == 2 || attackerX == 2 + 1)
+                && (attackedX == 2 || attackedX == 2 + 1))) {
             node.put("error", "Attacked card does not belong to the enemy.");
             output.add(node);
             return;
@@ -61,8 +66,7 @@ public class CardUsesAttack {
 
         if (attackerIdx == 2) {
             rowToCheckIdx = 2;
-        }
-        else {
+        } else {
             rowToCheckIdx = 1;
         }
 

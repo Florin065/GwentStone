@@ -9,8 +9,16 @@ import game.Match;
 import game.Player;
 import game.cards.Hero;
 
-public class UseHeroAbility {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board, Match match) {
+public final class UseHeroAbility {
+    /**
+     *
+     * @param match
+     * @param output
+     * @param actionsInput
+     * @param board
+     */
+    public void action(final Match match, final ArrayNode output,
+                       final ActionsInput actionsInput, final Board board) {
         int attackerIdx = match.getPlayerTurn();
 
         Player attacker = attackerIdx == 1 ? match.getPlayer1() : match.getPlayer2();

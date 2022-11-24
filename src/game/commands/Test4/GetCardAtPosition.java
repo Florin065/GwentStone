@@ -5,14 +5,18 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import game.Board;
-import game.Match;
-import game.cards.Card;
 import game.cards.Minion;
 
-import java.util.ArrayList;
 
-public class GetCardAtPosition {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board) {
+public final class GetCardAtPosition {
+    /**
+     *
+     * @param output
+     * @param actionsInput
+     * @param board
+     */
+    public void action(
+            final ArrayNode output, final ActionsInput actionsInput, final Board board) {
         int x = actionsInput.getX();
         int y = actionsInput.getY();
 

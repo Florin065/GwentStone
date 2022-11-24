@@ -7,7 +7,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
-public class Player {
+
+public final class Player {
     @Getter @Setter
     private ArrayList<Card> currentDeck;
 
@@ -28,21 +29,36 @@ public class Player {
         mana = 0;
     }
 
+    /**
+     * method to get cards in hand
+     */
     public void getCardInHand() {
         if (currentDeck.size() > 0) {
             currentHand.add(currentDeck.remove(0));
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Hero getHero() {
         return hero;
     }
 
-    public void setHero(Hero hero) {
+    /**
+     *
+     * @param hero
+     */
+    public void setHero(final Hero hero) {
         this.hero = hero;
     }
 
-    public void setHero(Card hero) {
+    /**
+     *
+     * @param hero
+     */
+    public void setHero(final Card hero) {
         this.hero = (Hero) hero;
     }
 }

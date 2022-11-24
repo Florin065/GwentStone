@@ -9,10 +9,17 @@ import game.Match;
 import game.cards.Hero;
 import game.cards.Minion;
 
-import java.util.ArrayList;
-
-public class UseAttackHero {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board, Match match) {
+public final class UseAttackHero {
+    /**
+     *
+     * @param output
+     * @param actionsInput
+     * @param board
+     * @param match
+     */
+    public void action(
+            final ArrayNode output, final ActionsInput actionsInput,
+             final Board board, final Match match) {
         int attackerX = actionsInput.getCardAttacker().getX();
         int attackerY = actionsInput.getCardAttacker().getY();
 
@@ -22,8 +29,7 @@ public class UseAttackHero {
 
         if (attackerX == 0 || attackerX == 1) {
             attackerIdx = 2;
-        }
-        else if (attackerX == 2 || attackerX == 3) {
+        } else if (attackerX == 2 || attackerX == 2 + 1) {
             attackerIdx = 1;
         }
 
@@ -54,7 +60,8 @@ public class UseAttackHero {
             return;
         }
 
-        Hero enemyHero = attackerIdx == 1 ? match.getPlayer2().getHero() : match.getPlayer1().getHero();
+        Hero enemyHero =
+                attackerIdx == 1 ? match.getPlayer2().getHero() : match.getPlayer1().getHero();
         attacker.useAttackHero(enemyHero);
         attacker.setUsedAction(true);
 

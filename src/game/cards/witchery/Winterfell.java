@@ -5,12 +5,21 @@ import game.Board;
 import game.cards.Environment;
 import game.cards.Minion;
 
-public class Winterfell extends Environment {
-    public Winterfell(CardInput cardInput) {
+public final class Winterfell extends Environment {
+    /**
+     *
+     * @param cardInput
+     */
+    public Winterfell(final CardInput cardInput) {
         super(cardInput);
     }
 
-    public void useWinterfellAbility(int affectedRow, Board board) {
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
+    public void useWinterfellAbility(final int affectedRow, final Board board) {
         for (Minion affectedCard : board.getCards().get(affectedRow)) {
             affectedCard.setFrozen(true);
         }

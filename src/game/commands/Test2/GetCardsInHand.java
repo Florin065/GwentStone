@@ -1,8 +1,6 @@
 package game.commands.Test2;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import game.Match;
 import game.cards.Card;
 import game.cards.Environment;
@@ -10,26 +8,35 @@ import game.cards.Minion;
 
 import java.util.ArrayList;
 
-public class GetCardsInHand {
-    public void action(Match match, ArrayNode output, int playerIdx) {
+public final class GetCardsInHand {
+    /**
+     *
+     * @param match
+     * @param output
+     * @param playerIdx
+     */
+    public void action(final Match match, final ArrayNode output, final int playerIdx) {
         ArrayList<Card> handCopy;
 
         if (playerIdx == 1) {
             handCopy = new ArrayList<>();
             for (Card card : match.getPlayer1().getCurrentHand()) {
-                if (card instanceof Environment)
+                if (card instanceof Environment) {
                     handCopy.add(new Environment(card));
-                if (card instanceof Minion)
+                }
+                if (card instanceof Minion) {
                     handCopy.add(new Minion((Minion) card));
+                }
             }
-        }
-        else {
+        } else {
             handCopy = new ArrayList<>();
             for (Card card : match.getPlayer2().getCurrentHand()) {
-                if (card instanceof Environment)
+                if (card instanceof Environment) {
                     handCopy.add(new Environment(card));
-                if (card instanceof Minion)
+                }
+                if (card instanceof Minion) {
                     handCopy.add(new Minion((Minion) card));
+                }
             }
         }
 

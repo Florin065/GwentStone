@@ -5,11 +5,22 @@ import game.Board;
 import game.cards.Hero;
 import game.cards.Minion;
 
-public class EmpressThorina extends Hero {
-    public EmpressThorina(CardInput cardInput) { super(cardInput); }
+public final class EmpressThorina extends Hero {
+    /**
+     *
+     * @param cardInput
+     */
+    public EmpressThorina(final CardInput cardInput) {
+        super(cardInput);
+    }
 
+    /**
+     *
+     * @param affectedRow
+     * @param board
+     */
     @Override
-    public void useHeroAbility(int affectedRow, Board board) {
+    public void useHeroAbility(final int affectedRow, final Board board) {
         int cardMaxHealth = 0;
         Minion card = null;
 
