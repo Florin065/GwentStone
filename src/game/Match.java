@@ -1,6 +1,8 @@
 package game;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import fileio.GameInput;
 import fileio.Input;
@@ -8,6 +10,7 @@ import game.cards.CardGen;
 import game.commands.Test1.GetPlayerDeck;
 import game.commands.Test1.GetPlayerHero;
 import game.commands.Test1.GetPlayerTurn;
+import game.commands.Test10.UseAttackHero;
 import game.commands.Test2.*;
 import game.commands.Test4.GetCardAtPosition;
 import game.commands.Test4.GetEnvironmentCardsInHand;
@@ -78,6 +81,21 @@ public class Match {
         player2.getCardInHand();
     }
 
+    public void endMatch(int attackerIdx) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode node = mapper.createObjectNode();
+        if (attackerIdx == 1) {
+            node.put("gameEnded", "Player one killed the enemy hero.");
+            player1.setWins(player1.getWins() + 1);
+        } else {
+            node.put("gameEnded", "Player two killed the enemy hero.");
+            player2.setWins(player2.getWins() + 1);
+        }
+        output.add(node);
+        player1.setPlays(player1.getPlays() + 1);
+        player2.setPlays(player2.getPlays() + 1);
+    }
+
     public void playGame() {
         for (ActionsInput actionsInput : this.gameInput.getActions()) {
             System.out.println(actionsInput.getCommand());
@@ -113,10 +131,10 @@ public class Match {
                     CardUsesAbility cardUsesAbility = new CardUsesAbility();
                     cardUsesAbility.action(output, actionsInput, board, this);
                 }
-//                case "useAttackHero" -> {
-//                    UseAttackHero useAttackHero = new UseAttackHero();
-//                    TODO
-//                }
+                case "useAttackHero" -> {
+                    UseAttackHero useAttackHero = new UseAttackHero();
+                    useAttackHero.action(output, actionsInput, board, this);
+                }
 //                case "useHeroAbility" -> {
 //                    UseHeroAbility useHeroAbility = new UseHeroAbility();
 //                    TODO

@@ -23,6 +23,11 @@ public class Hero extends Card {
     public Hero() {
     }
 
+    public Hero(Hero hero) {
+        super(hero);
+        this.health = hero.getHealth();
+    }
+
     public void useHeroAbility() {
     }
 }
