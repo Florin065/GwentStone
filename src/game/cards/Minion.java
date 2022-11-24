@@ -40,15 +40,7 @@ public class Minion extends Card {
         attacked.setHealth(attacked.getHealth() - getAttackDamage());
     }
 
-    public void useDiscipleAbility(Minion attacked, Board board) {
-    }
+    public void useAbility(Minion attacked, Board board) {
 
-    public void useMirajAbility(Minion attacked, Minion attacker, Board board) {
-    }
-
-    public void useTheCursedOneAbility(Minion attacked, Board board) {
-    }
-
-    public void useTheRipperAbility(Minion attacked, Board board) {
     }
 }

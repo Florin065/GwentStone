@@ -1,5 +1,5 @@
 [ {
-  "command" : "getCardsOnTable",
+  "command" : "getCardsInHand",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 1,
@@ -66,7 +66,7 @@
     "health" : 30
   }
 }, {
-  "command" : "getCardsOnTable",
+  "command" : "getCardsInHand",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 1,
@@ -186,7 +186,7 @@
     "health" : 1
   } ] ]
 }, {
-  "command" : "getCardsOnTable",
+  "command" : "getCardsInHand",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 1,
@@ -195,7 +195,7 @@
     "colors" : [ "White", "Grey", "Black" ]
   } ]
 }, {
-  "command" : "getCardsOnTable",
+  "command" : "getCardsInHand",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 2,

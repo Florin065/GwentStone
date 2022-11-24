@@ -9,9 +9,10 @@ public class Miraj extends Minion {
         super(cardInput);
     }
 
-    public void useMirajAbility(Minion attacked, Minion attacker, Board board) {
-        int health = attacked.getHealth();
-        attacked.setHealth(attacker.getHealth());
-        attacker.setHealth(health);
+    @Override
+    public void useAbility(Minion attacked, Board board) {
+        int auxHealth = getHealth();
+        setHealth(attacked.getHealth());
+        attacked.setHealth(auxHealth);
     }
 }

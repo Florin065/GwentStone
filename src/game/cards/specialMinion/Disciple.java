@@ -5,12 +5,14 @@ import game.Board;
 import game.cards.Minion;
 
 public class Disciple extends Minion {
+    final static int HEAL = 2;
     public Disciple(CardInput cardInput) {
         super(cardInput);
         setAttackDamage(0);
     }
 
-    public void useDiscipleAbility(Minion attacked, Board board) {
-        attacked.setHealth(attacked.getHealth() + 2);
+    @Override
+    public void useAbility(Minion attacked, Board board) {
+        attacked.setHealth(attacked.getHealth() + HEAL);
     }
 }

@@ -9,11 +9,8 @@ public class TheRipper extends Minion {
         super(cardInput);
     }
 
-    public void useTheRipperAbility(Minion attacked, Board board) {
-        attacked.setAttackDamage(attacked.getAttackDamage() - 2);
-
-        if (attacked.getAttackDamage() <= 0) {
-            attacked.setAttackDamage(0);
-        }
+    @Override
+    public void useAbility(Minion attacked, Board board) {
+        attacked.setAttackDamage(Math.max(0, attacked.getAttackDamage() - 2));
     }
 }

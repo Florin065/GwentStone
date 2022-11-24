@@ -5,31 +5,32 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import game.Board;
+import game.Match;
+import game.Player;
 import game.cards.Minion;
 
 import java.util.ArrayList;
 
 public class CardUsesAbility {
-    public void action(ArrayNode output, ActionsInput actionsInput, Board board) {
+    public void action(ArrayNode output, ActionsInput actionsInput, Board board, Match match) {
         int attackerX = actionsInput.getCardAttacker().getX();
         int attackerY = actionsInput.getCardAttacker().getY();
         int attackedX = actionsInput.getCardAttacked().getX();
         int attackedY = actionsInput.getCardAttacked().getY();
 
-        int attackerIdx = 0;
+        Player current;
 
         if (attackerX == 0 || attackerX == 1) {
-            attackerIdx = 2;
+            current = match.getPlayer2();
         }
         else if (attackerX == 2 || attackerX == 3) {
-            attackerIdx = 1;
-
+            current = match.getPlayer1();
         }
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
 
-        node.put("command", "cardUsesAttack");
+        node.put("command", "cardUsesAbility");
         node.putPOJO("cardAttacker", actionsInput.getCardAttacker());
         node.putPOJO("cardAttacked", actionsInput.getCardAttacked());
 
@@ -48,14 +49,34 @@ public class CardUsesAbility {
             output.add(node);
             return;
         }
-        // Corner Case 3
 
-        switch (attacker.getName()) {
-            case "Disciple" -> attacker.useDiscipleAbility(attacked, board);
-            case "The Ripper" -> attacker.useTheRipperAbility(attacked, board);
-            case "Miraj" -> attacker.useMirajAbility(attacked, attacker, board);
-            case "The Cursed One" -> attacker.useTheCursedOneAbility(attacked, board);
+        boolean rowCurrent = (((attackerX == 0 || attackerX == 1)
+                && (attackedX == 0 || attackedX == 1))
+                || ((attackerX == 2 || attackerX == (2 + 1))
+                && (attackedX == 2 || attackedX == (2 + 1))));
+
+        // Corner Case 3 -> medic
+        if (attacker.getName().equals("Disciple")) {
+            if (!rowCurrent) {
+                node.put("error", "Attacked card does not belong to the current player.");
+                output.add(node);
+                return;
+            }
+        } else {
+            if (rowCurrent) {
+                node.put("error", "Attacked card does not belong to the enemy.");
+                output.add(node);
+                return;
+            }
+
+            if (board.enemyHasTank(match.getPlayerTurn()) && !attacked.isTank()) {
+                node.put("error", "Attacked card is not of type 'Tank'.");
+                output.add(node);
+                return;
+            }
         }
+
+        attacker.useAbility(attacked, board);
 
         attacker.setUsedAction(true);
     }

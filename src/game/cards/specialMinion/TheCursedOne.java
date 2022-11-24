@@ -10,19 +10,14 @@ public class TheCursedOne extends Minion {
         setAttackDamage(0);
     }
 
-    public void useTheCursedOneAbility(Minion attacked, Board board) {
-        int damage = attacked.getAttackDamage();
-        int health = attacked.getHealth();
-
-        attacked.setAttackDamage(health);
-        attacked.setHealth(damage);
-
-        if (attacked.getHealth() <= 0) {
-//            board.getCards();
+    @Override
+    public void useAbility(Minion attacked, Board board) {
+        if (attacked.getAttackDamage() == 0) {
+            board.removeMinionOnTable(attacked);
             return;
         }
-        if (attacked.getAttackDamage() <= 0) {
-            attacked.setAttackDamage(0);
-        }
+        int auxValue = attacked.getAttackDamage();
+        attacked.setAttackDamage(attacked.getHealth());
+        attacked.setHealth(auxValue);
     }
 }

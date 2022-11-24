@@ -111,7 +111,7 @@ public class Match {
                 }
                 case "cardUsesAbility" -> {
                     CardUsesAbility cardUsesAbility = new CardUsesAbility();
-//                    cardUsesAbility.action(output, actionsInput, board);
+                    cardUsesAbility.action(output, actionsInput, board, this);
                 }
 //                case "useAttackHero" -> {
 //                    UseAttackHero useAttackHero = new UseAttackHero();
