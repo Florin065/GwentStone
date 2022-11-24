@@ -13,6 +13,10 @@ public class Environment extends Card {
     public Environment() {
     }
 
+    public Environment(Card card) {
+        super(card);
+    }
+
     public void useFirestormAbility(int affectedRow, Board board) {
     }
 

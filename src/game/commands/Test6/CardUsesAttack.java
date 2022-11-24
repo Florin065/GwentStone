@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
-import fileio.Coordinates;
 import game.Board;
 import game.cards.Minion;
 
@@ -17,16 +16,8 @@ public class CardUsesAttack {
         int attackedX = actionsInput.getCardAttacked().getX();
         int attackedY = actionsInput.getCardAttacked().getY();
 
-        ArrayList<ArrayList<Minion>> list = new ArrayList<>();
-
-        for (int i = 0; i < 4; i++) {
-            list.add(new ArrayList<>());
-
-            for (Minion minion : board.getCards().get(i)) {
-                Minion deepCopy = new Minion(minion);
-                list.get(i).add(deepCopy);
-            }
-        }
+        Minion attacker = board.getCards().get(attackerX).get(attackerY);
+        Minion attacked = board.getCards().get(attackedX).get(attackedY);
         
         int attackerIdx = 0;
 
@@ -35,7 +26,6 @@ public class CardUsesAttack {
         }
         else if (attackerX == 2 || attackerX == 3) {
             attackerIdx = 1;
-
         }
 
         ObjectMapper mapper = new ObjectMapper();
@@ -45,17 +35,15 @@ public class CardUsesAttack {
         node.putPOJO("cardAttacker", actionsInput.getCardAttacker());
         node.putPOJO("cardAttacked", actionsInput.getCardAttacked());
 
-
-
         // Corner Case 1
-        if (attackerX == attackedX) {
+        if (((attackerX == 0 || attackerX == 1)
+                && (attackedX == 0 || attackedX == 1))
+                || ((attackerX == 2 || attackerX == (2 + 1))
+                && (attackedX == 2 || attackedX == (2 + 1)))) {
             node.put("error", "Attacked card does not belong to the enemy.");
             output.add(node);
             return;
         }
-
-        Minion attacker = list.get(attackerX).get(attackerY);
-        Minion attacked = list.get(attackedX).get(attackedY);
         // Corner Case 2
         if (attacker.isUsedAction()) {
             node.put("error", "Attacker card has already attacked this turn.");
@@ -92,16 +80,15 @@ public class CardUsesAttack {
         }
 
         if (tank) {
-            node.put("error", "Attacked card is not of type 'Tank'");
+            node.put("error", "Attacked card is not of type 'Tank'.");
             output.add(node);
             return;
         }
 
-        attacker.useAttack(attacked, attacker, board);
-        board.getCards().get(attackedX).get(attackedY).setHealth(attacked.getHealth());
+        attacker.useAttack(attacked);
         if (attacked.getHealth() <= 0) {
-            board.getCards().remove(attacked);
+            board.removeMinionOnTable(attacked);
         }
-        board.getCards().get(attackerX).get(attackerY).setUsedAction(true);
+        attacker.setUsedAction(true);
     }
 }

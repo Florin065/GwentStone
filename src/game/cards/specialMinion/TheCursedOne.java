@@ -18,7 +18,7 @@ public class TheCursedOne extends Minion {
         attacked.setHealth(damage);
 
         if (attacked.getHealth() <= 0) {
-            board.getCards().remove(attacked);
+//            board.getCards();
             return;
         }
         if (attacked.getAttackDamage() <= 0) {

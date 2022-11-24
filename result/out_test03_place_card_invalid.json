@@ -1,5 +1,5 @@
 [ {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 1,
@@ -15,7 +15,7 @@
     "health" : 3
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 4,
@@ -51,7 +51,7 @@
   "handIdx" : 0,
   "error" : "Not enough mana to place card on table."
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 1,
@@ -74,7 +74,7 @@
     "health" : 8
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 4,
@@ -191,7 +191,7 @@
     "health" : 7
   } ], [ ] ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 1,
@@ -207,7 +207,7 @@
     "health" : 5
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 3,

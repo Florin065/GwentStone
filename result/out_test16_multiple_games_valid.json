@@ -131,7 +131,7 @@
     "health" : 1
   } ] ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 1,
@@ -140,7 +140,7 @@
     "colors" : [ "Blue", "Green", "White" ]
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 2,
@@ -300,7 +300,7 @@
     "health" : 5
   } ], [ ] ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 1,
@@ -311,7 +311,7 @@
     "health" : 4
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 1,

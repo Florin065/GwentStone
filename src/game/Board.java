@@ -17,4 +17,10 @@ public class Board {
         cards.add(new ArrayList<>());
         cards.add(new ArrayList<>());
     }
+
+    public void removeMinionOnTable(Minion card) {
+        for (ArrayList<Minion> row : cards) {
+            row.remove(card);
+        }
+    }
 }

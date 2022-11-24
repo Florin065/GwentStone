@@ -32,4 +32,11 @@ public class Card {
 
     public Card() {
     }
+
+    public Card(Card card) {
+        this.mana = card.mana;
+        this.colors = card.colors;
+        this.description = card.description;
+        this.name = card.name;
+    }
 }

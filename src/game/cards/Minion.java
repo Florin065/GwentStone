@@ -36,8 +36,8 @@ public class Minion extends Card {
         this.usedAction = false;
     }
 
-    public void useAttack(Minion attacked, Minion attacker, Board board) {
-        attacked.setHealth(attacked.getHealth() - attacker.getAttackDamage());
+    public void useAttack(Minion attacked) {
+        attacked.setHealth(attacked.getHealth() - getAttackDamage());
     }
 
     public void useDiscipleAbility(Minion attacked, Board board) {

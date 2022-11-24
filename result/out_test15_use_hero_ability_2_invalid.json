@@ -148,7 +148,7 @@
     "health" : 2
   } ] ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 2,
   "output" : [ {
     "mana" : 2,
@@ -157,7 +157,7 @@
     "colors" : [ "White", "Blue" ]
   } ]
 }, {
-  "command" : "getCardsInHand",
+  "command" : "getCardsOnTable",
   "playerIdx" : 1,
   "output" : [ {
     "mana" : 1,
